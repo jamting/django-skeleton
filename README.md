@@ -1,6 +1,12 @@
 django-skeleton
 ===============
 
+**NOTE**: This is a fork by jamting in which intend to adjust this excellent project to fit my needs better.  
+
+/jamting
+
+Original documentations follows:
+
 An easy-to-use standard project structure for a fresh Django project. Includes Twitter Bootstrap http://twitter.github.com/bootstrap/
 
 ===
@@ -22,7 +28,7 @@ Done!
 
 #####One line setup:
 
-	git clone https://github.com/mschettler/django-skeleton.git && cd django-skeleton && python setup.py
+	git clone https://github.com/jamting/django-skeleton.git && cd django-skeleton && python setup.py
 
 
 #Screenshot
