@@ -4,7 +4,7 @@ import os
 import manage
 PROJECT_ROOT = os.path.dirname(manage.__file__) # Path of manage.py 
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -158,3 +158,8 @@ LOGGING = {
         },
     }
 }
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
