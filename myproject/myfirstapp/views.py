@@ -3,6 +3,8 @@ from django.template import RequestContext
 
 def home(request):
 
-    d = {}
+    d = {
+        'ip': request.META["REMOTE_ADDR"],
+    }
 
     return render_to_response('myfirstapp/home.html', d, RequestContext(request))
