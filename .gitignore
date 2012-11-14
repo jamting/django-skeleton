@@ -27,3 +27,4 @@ pip-log.txt
 .mr.developer.cfg
 myproject/data
 myproject/logs
+myproject/.idea
