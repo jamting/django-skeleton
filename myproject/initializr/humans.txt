@@ -1,15 +1,29 @@
 # humanstxt.org/
 # The humans responsible & technology colophon
+                  _
+       __ _ _ _ _| |_ ____
+    __|  | | | |   __|    \
+   |  |  | | | |   __|  |  |
+   |_____|_____|_   _|____/
+                 |_|
+
+      Jamting Web & Design
+
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+Your title: Mattias Jamting @ Jamting Web & Design (JWD)
+Site: mattias@jamting.se
+Twitter: @mattiasjamting
+Location: Offne, Jamtland, Sweden
 
 # THANKS
 
-    <name>
+Djangoproject
 
 # TECHNOLOGY COLOPHON
 
-    HTML5, CSS3
-    jQuery, Modernizr
+Last update: 2012-11-14
+Standards: HTML5, CSS3,..
+Components: Django, Initializr, Modernizr, jQuery
+Software: PyCharm
