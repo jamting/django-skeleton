@@ -26,3 +26,4 @@ pip-log.txt
 data
 logs
 .idea
+local_settings.py
