@@ -7,6 +7,7 @@ import os, sys, string, shutil
 CURRENT_DIRECTORY    = os.getcwd()
 CURRENT_PROJECT_NAME = 'myproject'
 CURRENT_APP_NAME     = 'myfirstapp'
+CURRENT_PROXY_PORT   = '7000'
 GITHUB_CLONE_CMD     = 'git clone https://github.com/mschettler/django-skeleton.git'
 
 BAR80 = '-'*100  # the cake is a lie
@@ -54,6 +55,25 @@ def validate_name(name):
     if name[0] in '_-':
         return 'Error: Name can only start with a letter, not an underscore or dash'
 
+
+    # name passed validation
+    return None
+
+
+def validate_proxy_port(name):
+    """ 
+    returns None on success, otherwise an error message is returned describing
+    why the proxy port failed to validate
+    """
+
+    if ' ' in name:
+        return 'Error: Proxy port cannot contain spaces'
+    
+    if not name.isdigit:
+        return 'Error: Name can only contain numbers'
+
+    if len(name) < 1:
+        return 'Error: Proxy port must have length'
 
     # name passed validation
     return None
@@ -175,10 +195,35 @@ while inputerror:
 
     break
 
+################################################################################
+# Main script routine - get a new proxyport for the app
+################################################################################
+
+inputerror = True
+
+while inputerror:
+
+    print BAR80
+
+    print 'Your current proxy port is "%s". Please enter a new app name (blank to skip): ' % CURRENT_PROXY_PORT
+    new_proxy_port = get_user_feedback()
+
+    if new_proxy_port:
+        inputerror = validate_proxy_port(new_proxy_port)
+        if inputerror:
+            print inputerror
+            continue
+
+        print 'You entered "%s" as your new proxy port.' % new_proxy_port
+    else:
+        print 'You skipped renaming your default app. The current name of "%s" still stands.' % CURRENT_PROXY_PORT
+
+    break
+
 print BAR80
 
-if not new_app_name and not new_project_name:
-    print 'You decided not to rename your project or app. This script has nothing to do. Goodbye!'
+if not new_app_name and not new_project_name and not new_proxy_port:
+    print 'You decided not to rename your project or app, or to change proxy port. This script has nothing to do. Goodbye!'
     sys.exit(0)
 
 
@@ -217,9 +262,12 @@ for root, dirs, files in os.walk(CURRENT_DIRECTORY):
     for f in files:
 
         fullpath = os.path.join(root, f)
+        filename, extension = os.path.splitext(fullpath)
 
         # ignore hidden files, this file, and non-python files
-        if f.startswith('.') or f == __file__.lstrip('./') or not f.endswith('.py'):
+        if (f.startswith('.')) or \
+           (f == __file__.lstrip('./')) or \
+           (extension not in ['.py', '.conf', '.sh']):
             continue
 
         with open(fullpath, 'r') as fh:
@@ -229,6 +277,8 @@ for root, dirs, files in os.walk(CURRENT_DIRECTORY):
             file_string_replace.append((fullpath, CURRENT_PROJECT_NAME, new_project_name))
         if new_app_name and CURRENT_APP_NAME in fdata:
             file_string_replace.append((fullpath, CURRENT_APP_NAME, new_app_name))
+        if new_proxy_port and CURRENT_PROXY_PORT in fdata:
+            file_string_replace.append((fullpath, CURRENT_PROXY_PORT, new_proxy_port))
 
 
 if not rename_cache:
