@@ -92,6 +92,16 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.request',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'cms.context_processors.media',
+    'sekizai.context_processors.sekizai',
+)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -101,6 +111,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'cms.middleware.multilingual.MultilingualURLMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
     'myproject.middleware.XForwardedForMiddleware',
 )
 
@@ -121,11 +135,29 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    'django.contrib.sitemaps',
     'debug_toolbar',
     'django_extensions',
     'myproject',
     'myfirstapp',
+    'cms',
+    'mptt',
+    'menus',
     'south',
+    'sekizai',
+    'cms.plugins.flash',
+    'cms.plugins.googlemap',
+    'cms.plugins.link',
+    'cms.plugins.snippet',
+    'cms.plugins.text',
+    'cms.plugins.twitter',
+    'filer',
+    'cmsplugin_filer_file',
+    'cmsplugin_filer_folder',
+    'cmsplugin_filer_image',
+    'cmsplugin_filer_teaser',
+    'cmsplugin_filer_video',
+    'reversion',
 )
 
 
@@ -164,6 +196,16 @@ LOGGING = {
         },
     }
 }
+
+CMS_TEMPLATES = (
+    ('template_1.html', 'Template One'),
+    ('template_2.html', 'Template Two'),
+)
+
+LANGUAGES = [
+    ('en', 'English'),
+    # ('sv', 'Svenska'),
+]
 
 try:
     from local_settings import *

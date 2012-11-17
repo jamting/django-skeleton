@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.conf.urls.static import static
+from cms.sitemaps import CMSSitemap
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -16,6 +17,10 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+
+    # Sitemap
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': {'cmspages': CMSSitemap}}),
+    url(r'^', include('cms.urls')),
 )
 
 # Serve Media files (Only when DEBUG is True)
