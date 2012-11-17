@@ -125,6 +125,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'myproject',
     'myfirstapp',
+    'south',
 )
 
 
