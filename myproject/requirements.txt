@@ -1,3 +1,4 @@
+Cartridge==0.6.0
 Django==1.4.2
 Mezzanine==1.2.4
 PIL==1.1.7
@@ -11,6 +12,7 @@ filebrowser-safe==0.2.12
 grappelli-safe==0.2.10
 gunicorn==0.15.0
 html5lib==0.95
+pisa==3.0.33
 psycopg2==2.4.5
 pytz==2012h
 wsgiref==0.1.2
